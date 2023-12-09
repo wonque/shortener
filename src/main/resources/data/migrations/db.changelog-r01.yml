@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+        id: r01.1
+        author: Anatoliy
+        changes:
+          - createSequence:
+              sequenceName: urlMappingUniqueIdSequence
+              startValue: 100
+              incrementBy: 30
+
+  - changeSet:
+      id: r01.2
+      author: Anatoliy Tolstih
+      changes:
+        - createTable:
+            tableName: urlMapping
+            columns:
+              - column:
+                    name: shortUrlHash
+                    type: varchar(32)
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+              - column:
+                  name: generatedId
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: sourceUrlHash
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: sourceUrl
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: createdAt
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: r01.3
+      author: Anatoliy
+      changes:
+        - createIndex:
+            tableName: urlMapping
+            indexName: sourceUrlHashIdx
+            unique: true
+            columns:
+              - column:
+                  name: sourceURLHash

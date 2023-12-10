@@ -22,7 +22,7 @@ class UrlMappingDaoTest {
         var hash = DigestUtils.md5Hex(sourceUrl);
         var entity = UrlMappingEntity.builder()
                 .sourceUrl(sourceUrl)
-                .shortUrlHash("Some short url")
+                .alias("Some short url")
                 .generatedId(100500L)
                 .createdNow()
                 .sourceUrlHash(DigestUtils.md5Hex(sourceUrl)).build();

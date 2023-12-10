@@ -1,6 +1,6 @@
 package io.liliac.shortener.validation;
 
-import io.liliac.shortener.dto.ShortenUrlRequest;
+import io.liliac.shortener.dto.GenerateAliasRequest;
 import io.liliac.shortener.validation.rules.ValidationRule;
 import io.quarkus.arc.All;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -18,7 +18,7 @@ public class ValidationService {
         this.rules = rules;
     }
 
-    public List<ValidationError> validate(ShortenUrlRequest request) {
+    public List<ValidationError> validate(GenerateAliasRequest request) {
         return rules.stream().flatMap(rule -> rule.apply(request.url()).stream()).toList();
     }
 }

@@ -16,10 +16,10 @@ import static org.mockito.ArgumentMatchers.any;
 
 class UrlMappingServiceTest {
 
-    private HashingService hashingService = new HashingService();
-    private MappingIdProvider mappingIdProvider = Mockito.mock(SequenceMappingIdProvider.class);
-    private UrlMappingDao mappingDao = Mockito.mock(UrlMappingDao.class);
-    private UrlMappingService service = new UrlMappingService(hashingService, mappingIdProvider, mappingDao);
+    private final HashingService hashingService = new HashingService();
+    private final MappingIdProvider mappingIdProvider = Mockito.mock(SequenceMappingIdProvider.class);
+    private final UrlMappingDao mappingDao = Mockito.mock(UrlMappingDao.class);
+    private final UrlMappingService service = new UrlMappingService(hashingService, mappingIdProvider, mappingDao);
 
     @Test
     public void createNewOrGetExistingMapping_returnExistingMappingIfSuchMappingExists() {
@@ -61,6 +61,6 @@ class UrlMappingServiceTest {
         assertEquals(longUrl, result.getSourceUrl());
         assertEquals(longUrlHash, result.getSourceUrlHash());
         assertNotNull(result.getCreatedAt());
-        assertFalse(result.getShortUrlHash().isBlank());
+        assertFalse(result.getAlias().isBlank());
     }
 }

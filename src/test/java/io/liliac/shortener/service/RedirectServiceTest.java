@@ -11,23 +11,23 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RedirectServiceTest {
 
-    private UrlMappingDao mappingDao = Mockito.mock(UrlMappingDao.class);
-    private RedirectService service = new RedirectService(mappingDao);
+    private final UrlMappingDao mappingDao = Mockito.mock(UrlMappingDao.class);
+    private final RedirectService service = new RedirectService(mappingDao);
 
     @Test
-    public void getLocation_throwExceptionIfMappingNotFoundForGivenShortUrl() {
+    public void getRedirectSource_throwExceptionIfMappingNotFoundForGivenShortUrl() {
         var url = "test";
         Mockito.when(mappingDao.getByShortUrl(url)).thenReturn(null);
-        assertThrows(MappingNotFoundException.class, () -> service.getLocation(url));
+        assertThrows(MappingNotFoundException.class, () -> service.getRedirectSource(url));
     }
 
     @Test
-    public void getLocation_returnLocationStringWithShortUrlIfMappingExists() {
+    public void getRedirectSource_returnLocationStringWithShortUrlIfMappingExists() {
         var shortUrlHash = "test";
         var sourceUrl = "http://goto.this";
         Mockito.when(mappingDao.getByShortUrl(shortUrlHash))
                 .thenReturn(UrlMappingEntity.builder().sourceUrl(sourceUrl).build());
-        var result = service.getLocation(shortUrlHash);
+        var result = service.getRedirectSource(shortUrlHash);
         assertEquals(sourceUrl, result);
     }
 }

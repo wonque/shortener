@@ -11,7 +11,7 @@ class HashingServiceTest {
 
     @Test
     public void generateBase62Hash_throwExceptionIfIdIsNegative() {
-        assertThrows(IllegalArgumentException.class, () -> service.generateBase62Hash(-11157L));
+        assertThrows(IllegalArgumentException.class, () -> service.generateBase62alias(-11157L));
     }
 
     @Test
@@ -19,7 +19,7 @@ class HashingServiceTest {
         // 11157 - value is taken from Alex Su book System design interview
         var input = 11157L;
         var expected = "2TX";
-        var result = service.generateBase62Hash(input);
+        var result = service.generateBase62alias(input);
         assertEquals(expected, result);
     }
 
@@ -28,10 +28,10 @@ class HashingServiceTest {
         // 11157 - value is taken from Alex Su book System design interview
         var input = 11157L;
         var expected = "2TX";
-        var result = service.generateBase62Hash(input);
+        var result = service.generateBase62alias(input);
         assertEquals(expected, result);
 
-        result = service.generateBase62Hash(input);
+        result = service.generateBase62alias(input);
         assertEquals(expected, result);
     }
 

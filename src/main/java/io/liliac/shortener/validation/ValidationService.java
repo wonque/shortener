@@ -11,7 +11,7 @@ import java.util.*;
 @ApplicationScoped
 public class ValidationService {
 
-    private List<ValidationRule> rules;
+    private final List<ValidationRule> rules;
 
     @Inject
     public ValidationService(@All List<ValidationRule> rules) {

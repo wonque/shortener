@@ -7,7 +7,7 @@ import jakarta.inject.Inject;
 @ApplicationScoped
 public class SequenceMappingIdProvider implements MappingIdProvider {
 
-    private IdentifierDao identifierDao;
+    private final IdentifierDao identifierDao;
 
     @Inject
     public SequenceMappingIdProvider(IdentifierDao identifierDao) {

@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
         id: r01.1
-        author: Anatoliy
+        author: Anatoliy Tolstih
         changes:
           - createSequence:
               sequenceName: urlMappingUniqueIdSequence
@@ -46,7 +46,7 @@ databaseChangeLog:
 
   - changeSet:
       id: r01.3
-      author: Anatoliy
+      author: Anatoliy Tolstih
       changes:
         - createIndex:
             tableName: urlMapping

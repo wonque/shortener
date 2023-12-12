@@ -64,7 +64,7 @@ public class UrlMappingEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(alias, alias);
+        return Objects.hash(alias, sourceUrlHash);
     }
 
     public static class Builder {

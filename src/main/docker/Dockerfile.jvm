@@ -12,22 +12,43 @@
 # Then run the container using:
 #
 # docker run -i --rm -p 8081:8081 quarkus/shortener-jvm
-
+#
+# Learn more about Quarkus Container Images: https://quarkus.io/guides/container-image
 ###
+
+# Specifying the base image for the Docker image
 FROM registry.access.redhat.com/ubi8/openjdk-17:1.18
 
+# Sets an environment variable LANGUAGE
 ENV LANGUAGE='en_US:en'
 
-# We make four distinct layers so if there are application changes the library layers can be re-used
+### We make four distinct layers so if there are application changes the library layers can be re-used
+# --chown=185 will set the
+# Copies the library files required by the Quarkus application
 COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
-COPY --chown=185 target/quarkus-app/*.jar /deployments/
-COPY --chown=185 target/quarkus-app/app/ /deployments/app/
-COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
 
+# Copies JAR files from the Quarkus application
+COPY --chown=185 target/quarkus-app/*.jar /deployments/
+
+# Copies application-specific files
+COPY --chown=185 target/quarkus-app/app/ /deployments/app/
+
+# Copies Quarkus runtime files
+COPY --chown=185 target/quarkus-app/quarkus/ /deployments/quarkus/
+###
+
+# Tells Docker that the container listens on port 8081 at runtime. It's a way of documenting which ports are intended to be published.
 EXPOSE 8081
+
+# Sets the user ID to 185 for running the container.
 USER 185
+
+# Host for Quarkus HTTP server and logging manager
 ENV JAVA_OPTS_APPEND="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
+
+# Specifies the path to the main application JAR file
 ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
 
+# Sets the default executable for the container. When the container starts, it will execute the run-java.sh script from the specified path.
 ENTRYPOINT [ "/opt/jboss/container/java/run/run-java.sh" ]
 

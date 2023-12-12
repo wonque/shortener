@@ -6,7 +6,7 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 ## Running the application in dev mode
 
-You can run your application in dev mode using:
+You can run application in dev mode using:
 ```shell script
 ./mvnw compile quarkus:dev
 ```
@@ -17,7 +17,10 @@ This however will skip tests. To run tests and then dev mode:
 ./mvnw quarkus:dev
 ```
 
-Test requests:
+Example of POST request for simple testing, where:
+-X specifies the method;
+-H stands for headers;
+-d stands for data
 ```shell script
 curl -X 'POST' \
   'http://localhost:8081/urls/aliases' \

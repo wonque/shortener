@@ -23,7 +23,7 @@ FROM registry.access.redhat.com/ubi8/openjdk-17:1.18
 ENV LANGUAGE='en_US:en'
 
 ### We make four distinct layers so if there are application changes the library layers can be re-used
-# --chown=185 will set the
+# --chown=185 will set the owner to user 185
 # Copies the library files required by the Quarkus application
 COPY --chown=185 target/quarkus-app/lib/ /deployments/lib/
 

@@ -13,8 +13,7 @@ You can run application in dev mode using:
 
 This however will skip tests. To run tests and then dev mode:
 ```shell script
-./mvnv package
-./mvnw quarkus:dev
+./mvnw package quarkus:dev
 ```
 
 Example of POST request for simple testing, where:
@@ -33,10 +32,7 @@ curl -X 'POST' \
 
 To check redirection, insert aliasFullUrl from response:
 ```shell script
-curl -X 'GET' \
-  '<aliasFullUrl from POST response>' \     
-  -H 'accept: */*' \
-  -i
+curl -X GET '<aliasFullUrl from POST response>' -H 'accept: */*' -i
 ```
 
 Swagger Open API available only in dev mode and accessible on http://localhost:8081/q/swagger-ui

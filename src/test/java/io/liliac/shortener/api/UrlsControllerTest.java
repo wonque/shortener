@@ -42,7 +42,7 @@ class UrlsControllerTest {
                 .body("{\"url\":\"not valid url\"}")
                 .header("Content-type", MediaType.APPLICATION_JSON)
                 .when()
-                .post("/urls/aliases")
+                .post("urls/aliases")
                 .then()
                 .statusCode(200)
                 .extract()

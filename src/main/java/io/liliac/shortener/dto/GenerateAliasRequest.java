@@ -1,5 +1,3 @@
 package io.liliac.shortener.dto;
 
-public record GenerateAliasRequest(
-        String url
-){}
+public record GenerateAliasRequest(String url){}
